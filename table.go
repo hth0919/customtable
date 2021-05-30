@@ -119,8 +119,8 @@ func (t *Table) AddRow(items ...interface{}) *Row {
 }
 
 // AddRow adds the supplied items as cells in one row of the table.
-func (t *Table) AddRowWithSlice(items []interface{}) *Row {
-	row := CreateRow(items)
+func (t *Table) AddRowWithSlice(items []string) *Row {
+	row := CreateStringRow(items)
 	t.elements = append(t.elements, row)
 	return row
 }
@@ -136,8 +136,10 @@ func (t *Table) AddHeaders(headers ...interface{}) {
 	t.headers = headers[:]
 }
 
-func (t *Table) AddHeadersWithSlice(headers []interface{}) {
-	t.headers = headers[:]
+func (t *Table) AddHeadersWithSlice(headers []string) {
+	for _, header := range headers {
+		t.headers = append(t.headers, header)
+	}
 }
 
 // SetAlign changes the alignment for elements in a column of the table;

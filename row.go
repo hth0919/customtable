@@ -21,6 +21,13 @@ func CreateRow(items []interface{}) *Row {
 	return row
 }
 
+func CreateStringRow(items []string) *Row {
+	row := &Row{cells: []*Cell{}}
+	for _, item := range items {
+		row.AddCell(item)
+	}
+	return row
+}
 // AddCell adds one item to a row as a new cell, where the item is either a
 // Cell or content to be put into a cell.
 func (r *Row) AddCell(item interface{}) {
