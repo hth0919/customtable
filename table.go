@@ -118,6 +118,13 @@ func (t *Table) AddRow(items ...interface{}) *Row {
 	return row
 }
 
+// AddRow adds the supplied items as cells in one row of the table.
+func (t *Table) AddRowWithSlice(items []interface{}) *Row {
+	row := CreateRow(items)
+	t.elements = append(t.elements, row)
+	return row
+}
+
 // AddTitle supplies a table title, which if present will be rendered as
 // one cell across the width of the table, as the first row.
 func (t *Table) AddTitle(title interface{}) {
@@ -126,6 +133,10 @@ func (t *Table) AddTitle(title interface{}) {
 
 // AddHeaders supplies column headers for the table.
 func (t *Table) AddHeaders(headers ...interface{}) {
+	t.headers = headers[:]
+}
+
+func (t *Table) AddHeadersWithSlice(headers []interface{}) {
 	t.headers = headers[:]
 }
 
